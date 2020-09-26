@@ -1,39 +1,37 @@
-const message = document.querySelector("#message");
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
 
-const displayMessage = (text) => {
-    message.textContent = text;
-};
+const getGameStatus = () => {
+  return {
+    leftPaddle,
+    rightPaddle,
+    ball,
+  }
+}
 
-const log = (text) => {
-    const parent = document.querySelector('#events');
-    const el = document.createElement('li');
-    el.innerHTML = text;
-  
-    parent.appendChild(el);
-    parent.scrollTop = parent.scrollHeight;
-  };
+ // establish connection to server through socket.io
+ const sock = io("http://localhost:8080");
 
-const onChatSubmitted = (sock) => (e) => {
-    e.preventDefault();
-  
-    const input = document.querySelector('#chat');
-    const text = input.value;
-    input.value = '';
-  
-    // send message to server
-    sock.emit('message', text);
-  };
-  
 
 (() => {
-    // establish connection to server through socket.io
-    const sock = io("http://localhost:8080");
+  // update client with server information
+  sock.on('message', (text) => {
+      console.log(text);
+  });
 
-    // client side listener for server events
-    sock.on("message", displayMessage);
-    sock.on('message', log);
+  sock.on("updateSpeed", (x, y) => {
+    ball.speedX = x;
+    ball.speedY = y;
+  });
 
-    document
-    .querySelector('#chat-form')
-    .addEventListener('submit', onChatSubmitted(sock));
+
+    sock.on("update", (x, y) => {
+      ball.positionX = x;
+      ball.positionY = y;
+    });
+
+    sock.on("updatePaddle", (x, y) => {
+      leftPaddle.positionX = x;
+      leftPaddle.positionY = y;
+    });
 })();

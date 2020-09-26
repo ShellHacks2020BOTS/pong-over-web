@@ -18,8 +18,8 @@ function drawRightScore()
 //Resets ball position and increments respective score
 function onScore(ifLeftScored)
 {
-    ballPosition.x = ballInitialPosition.x;
-    ballPosition.y = ballInitialPosition.y;
+    ball.positionX = ballInitialPosition.x;
+    ball.positionY = ballInitialPosition.y;
 
     if (ifLeftScored)
         leftScore++;

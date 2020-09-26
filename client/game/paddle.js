@@ -1,35 +1,37 @@
-let paddleDimensions = {width: 25, height: 200};
-let leftPaddleCoordinates = {x: 50, y: canvas.height / 2};
-let rightPaddleCoordinates = {x: canvas.width - 50, y: canvas.height / 2};
+class Paddle {
+    constructor(width, height, positionX, positionY) {
+        this.width = width;
+        this.height = height;
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
 
-function drawLeftPaddle()
-{
-    ctx.beginPath();
-    ctx.rect(leftPaddleCoordinates.x, leftPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ffd480";
-    ctx.fill();
-    ctx.closePath();
+    drawPaddle() {
+        ctx.beginPath();
+        ctx.rect(this.positionX, this.positionY, this.width, this.height);
+        ctx.fillStyle = "#ffd480";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    getPosition() {
+        return [this.positionX, this.positionY];
+    }
 }
 
-function drawRightPaddle()
-{
-    ctx.beginPath();
-    ctx.rect(rightPaddleCoordinates.x, rightPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ff6666";
-    ctx.fill();
-    ctx.closePath();
-}
+let leftPaddle = new Paddle(25, 200, 50, canvas.height / 2);
+let rightPaddle = new Paddle(25, 200, canvas.width - 50, canvas.height / 2);
 
 // Paddle tracks to user mouse
 document.addEventListener('mousemove', function(e)
 {
     let up = e.offsetY - 100;
     if(up > 0 && up < 767)
-        leftPaddleCoordinates.y = up;
+        leftPaddle.positionY = up;
     else if (up < 0)
-        leftPaddleCoordinates.y = 0;
+        leftPaddle.positionY= 0;
     else
-        leftPaddleCoordinates.y = 767;
+        leftPaddle.positionY = 767;
 })
 
 // TODO: Movement for player 2
