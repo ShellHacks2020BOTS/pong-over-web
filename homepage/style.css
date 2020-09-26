@@ -4,6 +4,7 @@ body {
 
 #titlecard {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -11,5 +12,12 @@ body {
 }
 
 #title {
+  font-family: Courier, monospace;
+  font-size: 50px;
   color: white;
 }
+
+#playbutton {
+
+}
+
