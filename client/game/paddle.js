@@ -1,24 +1,56 @@
 let paddleDimensions = {width: 25, height: 200};
-let paddleCoordinates = {x: 50, y: canvas.height / 2};
-let leftPaddle = document.getElementById("leftPaddle");
+let leftPaddleCoordinates = {x: 50, y: canvas.height / 2};
+let rightPaddleCoordinates = {x: canvas.width - 50, y: canvas.height / 2};
 
-function drawPaddle()
+let leftPaddleInitialCoordinates = {x: 50, y: canvas.height / 2};
+let rightPaddleInitialCoordinates = {x: canvas.width - 50, y: canvas.height / 2};
+
+function drawLeftPaddle()
 {
     ctx.beginPath();
-    ctx.rect(paddleCoordinates.x, paddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
+    ctx.rect(leftPaddleCoordinates.x, leftPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
     ctx.fillStyle = "#ffffff";
     ctx.fill();
     ctx.closePath();
 }
 
-//Paddle tracks to user mouse
+function drawRightPaddle()
+{
+    ctx.beginPath();
+    ctx.rect(rightPaddleCoordinates.x, rightPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawInitialLeftPaddle()
+{
+    ctx.beginPath();
+    ctx.rect(leftPaddleInitialCoordinates.x, leftPaddleInitialCoordinates.y, paddleDimensions.width, paddleDimensions.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawInitialRightPaddle()
+{
+    ctx.beginPath();
+    ctx.rect(rightPaddleInitialCoordinates.x, rightPaddleInitialCoordinates.y, paddleDimensions.width, paddleDimensions.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
+}
+
+// Paddle tracks to user mouse
 document.addEventListener('mousemove', function(e)
 {
     let up = e.offsetY - 100;
     if(up > 0 && up < 767)
-        paddleCoordinates.y = up;
+        leftPaddleCoordinates.y = up;
     else if (up < 0)
-        paddleCoordinates.y = 0;
+        leftPaddleCoordinates.y = 0;
     else
-        paddleCoordinates.y = 767;
+        leftPaddleCoordinates.y = 767;
 })
+
+// TODO: Movement for player 2
