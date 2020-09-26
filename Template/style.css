@@ -5,28 +5,30 @@
 
 #game
 {
-    width: 500px;
-    height: 200px;
+    width: 1918px;
+    height: 965px;
+    background-color: black;
     border: 1px solid black;
 }
 
-#enemyarea
+#leftPaddle
 {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 500px;
+    width: 50px;
     height: 250px;
-    border: 1px solid black;
+    background-color: white;
+    position: relative;
+    left: 75px;
+    top: 355px;
 }
 
-#character
+#rightPaddle
 {
-    width: 20px;
-    height: 50px;
-    background-color: red;
+    width: 50px;
+    height: 250px;
+    background-color: white;
     position: relative;
-    top: 150px;
+    left: 915px;
+    top: 355px;
 }
 
 .animate
@@ -42,27 +44,3 @@
     100%{top: 150px;}
 }
 
-#block
-{
-    width: 40px;
-    height: 40px;
-    background-color: blue;
-    position: relative;
-    top: 210px;
-    left: 460px;
-    animation: block 1s infinite linear;
-}
-
-@keyframes block
-{
-    0%{left:460px;}
-    100%{left:-80px;}
-}
-
-@keyframes blockUp
-{
-    0%{top: 210px;}
-    30%{top: 160px;}
-    70%{top: 160px;}
-    100%{top: 210px;}
-}
