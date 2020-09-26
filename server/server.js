@@ -10,7 +10,10 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connection', (sock) => {
+  // sends message to one single client
   sock.emit("message", "You are connected");
+  // sends message to everyone
+  sock.on("message", (text) => io.emit("message", text));
 });
 
 server.on("error", (err) => {
