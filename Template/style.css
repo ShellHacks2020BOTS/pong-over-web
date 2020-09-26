@@ -6,7 +6,7 @@
 #game
 {
     width: 1918px;
-    height: 965px;
+    height: 967px;
     background-color: black;
     border: 1px solid black;
 }
@@ -32,6 +32,37 @@
     top: 355px;
 }
 
+#ball
+{
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+    left: 947px;
+    top: 470px;
+    position: absolute;
+}
+
+#leftScore
+{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    left: 709px;
+    top: 50px;
+}
+
+#rightScore
+{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    left: 1109px;
+    top: 50px;
+}
+
 .animate
 {
     animation: jump 500ms;
@@ -44,4 +75,3 @@
     70%{top: 100px;}
     100%{top: 150px;}
 }
-
