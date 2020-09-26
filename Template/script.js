@@ -3,13 +3,15 @@ var ball = document.getElementById("ball");
 var ballAngle = 0;
 var ballPosition = {xPosition: 947, yPosition: 470};
 
-document.addEventListener('mousemove', function(e)
+document.getElementById("game").addEventListener('mousemove', function(e)
 {
     let up = e.offsetY - 125;
+    console.log(e.offsetY)
     if(up > 0 && up < 719)
         leftPaddle.style.top = up + 'px';
     else if (up < 0)
     {
+        console.log("wah")
         leftPaddle.style.top = 0 + 'px'
     }
     else
@@ -18,15 +20,6 @@ document.addEventListener('mousemove', function(e)
     }
 })
 
-window.setInterval(function()
-{
-    var ballLeft = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
-    if (blockLeft < randomPosition + 10 && blockLeft > randomPosition - 10)
-    {
-        block.style.backgroundColor = "green";
-        //block.style.animation = "blockUp";
-    }
-},10);
 
 // var checkDead = setInterval(function()
 // {
