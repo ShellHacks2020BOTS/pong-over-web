@@ -6,8 +6,16 @@ var ballPosition = {xPosition: 947, yPosition: 470};
 document.addEventListener('mousemove', function(e)
 {
     let up = e.offsetY - 125;
-    if(up > 0 && up < 717)
+    if(up > 0 && up < 719)
         leftPaddle.style.top = up + 'px';
+    else if (up < 0)
+    {
+        leftPaddle.style.top = 0 + 'px'
+    }
+    else
+    {
+        leftPaddle.style.top = 719 + 'px'
+    }
 })
 
 window.setInterval(function()
