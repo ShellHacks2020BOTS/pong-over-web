@@ -1,7 +1,7 @@
 let playButton = document.querySelector(".button");
 
 function play() {
-  location.href = "../game/index.html";
+  location.href = "../game/multiplayer_vs.html";
 }
 
 

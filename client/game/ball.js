@@ -1,8 +1,3 @@
-let canvas = document.getElementById("myCanvas");
-let ctx = canvas.getContext("2d");
-ctx.fillStyle = "#5d6385";
-ctx.fillRect(0,0,1920,1080);
-
 let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
 let ballPosition = {x: canvas.width / 2, y: canvas.height / 2};
 let ballSpeed = {dx: -8, dy: -Math.floor(Math.random() * 8) + 2};

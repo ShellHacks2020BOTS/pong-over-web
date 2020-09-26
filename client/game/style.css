@@ -5,13 +5,13 @@
 
 canvas { background: #5d6385; display: block; margin: 0 auto; }
 
-#game
+/* #game
 {
     width: 1918px;
     height: 967px;
     background-color: black;
     border: 1px solid black;
-}
+} */
 
 #leftPaddle
 {
