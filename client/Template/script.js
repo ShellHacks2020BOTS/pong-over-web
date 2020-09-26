@@ -1,7 +1,16 @@
-// establish connection to server through socket.io
-const sock = io("http://localhost:8080");
+const message = document.querySelector("#message");
 
-console.log("script works");
+const displayMessage = (text) => {
+    message.textContent = text;
+};
+
+(() => {
+    // establish connection to server through socket.io
+    const sock = io("http://localhost:8080");
+
+    sock.on("message", displayMessage);
+})();
+
 
 var leftPaddle = document.getElementById("leftPaddle");
 var ball = document.getElementById("ball");
@@ -24,16 +33,3 @@ document.getElementById("game").addEventListener('mousemove', function(e)
         leftPaddle.style.top = 719 + 'px'
     }
 })
-
-
-// var checkDead = setInterval(function()
-// {
-//     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-//     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-//     if(blockLeft < 20 && blockLeft > 0 && characterTop >= 130)
-//     {
-//         block.style.animation = "none";
-//         block.style.display = "none";
-//         alert("You lose");
-//     }
-// }, 10);
