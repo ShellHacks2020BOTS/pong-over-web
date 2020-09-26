@@ -3,6 +3,8 @@
     margin: 0;
 }
 
+canvas { background: black; display: block; margin: 0 auto; }
+
 #game
 {
     width: 1918px;

@@ -1,57 +1,51 @@
-var leftPaddle = document.getElementById("leftPaddle");
-var ball = document.getElementById("ball");
-var ballDirection = 0
-var ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
-var ballPosition = {xPosition: 947, yPosition: 470};
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+ctx.fillStyle = "#000000";
+ctx.fillRect(0,0,1920,1080);
 
-//Paddle tracks to user mouse
-document.addEventListener('mousemove', function(e)
+let ball = document.getElementById("ball");
+let ballDirection = 0
+let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
+let ballPosition = {x: canvas.width / 2, y: canvas.height / 2};
+let ballSpeed = {dx: 3, dy: -3};
+let ballRadius = 10;
+
+function drawBall()
 {
-    let up = e.offsetY - 125;
-    if(up > 0 && up < 719)
-        leftPaddle.style.top = up + 'px';
-    else if (up < 0)
-    {
-        leftPaddle.style.top = 0 + 'px'
-    }
-    else
-    {
-        leftPaddle.style.top = 719 + 'px'
-    }
-})
-
-//Ball logic
-function component(width, height, color, x, y) {
-    this.gamearea = gamearea;
-    this.width = width;
-    this.height = height;
-    this.angle = 0;
-    this.speed = 1;
-    this.x = x;
-    this.y = y;
-    this.update = function() {
-      ctx = myGameArea.context;
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.angle);
-      ctx.fillStyle = color;
-      ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
-      ctx.restore();
-    }
-    this.newPos = function() {
-      this.x += this.speed * Math.sin(this.angle);
-      this.y -= this.speed * Math.cos(this.angle);
-    }
+    ctx.beginPath();
+    ctx.arc(ballPosition.x, ballPosition.y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
 }
 
-// var checkDead = setInterval(function()
-// {
-//     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-//     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-//     if(blockLeft < 20 && blockLeft > 0 && characterTop >= 130)
-//     {
-//         block.style.animation = "none";
-//         block.style.display = "none";
-//         alert("You lose");
-//     }
-// }, 10);
+function draw()
+{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    drawPaddle();
+
+    //Collision
+    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius/* || ballPosition.x + ballSpeed.dx < ballRadius*/) {
+        ballSpeed.dx = -ballSpeed.dx;
+    }
+    else if (ballPosition.x + ballSpeed.dx < ballRadius + paddleCoordinates.x)
+    {
+        if (ballPosition.y > paddleCoordinates.y && ballPosition.y < paddleDimensions.height + paddleCoordinates.y)
+            ballSpeed.dx = -ballSpeed.dx;
+        else
+        {
+            alert("GAME OVER");
+            document.location.reload();
+            clearInterval(interval);
+        }
+    }
+    
+    if(ballPosition.y + ballSpeed.dy > canvas.height - ballRadius || ballPosition.y + ballSpeed.dy < ballRadius) {
+        ballSpeed.dy = -ballSpeed.dy;
+    }
+
+    ballPosition.x += ballSpeed.dx;
+    ballPosition.y += ballSpeed.dy;
+}
+let interval = setInterval(draw, 1);
