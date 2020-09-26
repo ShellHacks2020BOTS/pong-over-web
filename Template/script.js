@@ -2,30 +2,12 @@ var character = document.getElementById("character");
 var block = document.getElementById("block");
 var randomPosition;
 
-function jump()
-{
-    if(character.classList != "animate")
-        character.classList.add("animate");
-    else
-        return;
-    setTimeout(function()
-    {
-        character.classList.remove("animate");
-    },500)
-}
-
 document.addEventListener('mousemove', function(e)
 {
     let left = e.offsetX;
     if (left < 480)
         character.style.left = left + 'px';
 })
-
-window.setInterval(function()
-{
-    randomPosition = Math.floor(Math.random() * 480);
-    console.log("randomPosition = " + randomPosition);
-}, 1000);
 
 window.setInterval(function()
 {
