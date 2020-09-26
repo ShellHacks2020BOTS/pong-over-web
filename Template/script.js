@@ -1,36 +1,26 @@
-var character = document.getElementById("character");
-var block = document.getElementById("block");
-var randomPosition;
-
-function jump()
-{
-    if(character.classList != "animate")
-        character.classList.add("animate");
-    else
-        return;
-    setTimeout(function()
-    {
-        character.classList.remove("animate");
-    },500)
-}
+var leftPaddle = document.getElementById("leftPaddle");
+var ball = document.getElementById("ball");
+var ballAngle = 0;
+var ballPosition = {xPosition: 947, yPosition: 470};
 
 document.addEventListener('mousemove', function(e)
 {
-    let left = e.offsetX;
-    if (left < 480)
-        character.style.left = left + 'px';
+    let up = e.offsetY - 125;
+    if(up > 0 && up < 719)
+        leftPaddle.style.top = up + 'px';
+    else if (up < 0)
+    {
+        leftPaddle.style.top = 0 + 'px'
+    }
+    else
+    {
+        leftPaddle.style.top = 719 + 'px'
+    }
 })
 
 window.setInterval(function()
 {
-    randomPosition = Math.floor(Math.random() * 480);
-    console.log("randomPosition = " + randomPosition);
-}, 1000);
-
-window.setInterval(function()
-{
-    var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    console.log(blockLeft);
+    var ballLeft = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
     if (blockLeft < randomPosition + 10 && blockLeft > randomPosition - 10)
     {
         block.style.backgroundColor = "green";
