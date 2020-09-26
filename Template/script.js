@@ -1,18 +1,18 @@
-var character = document.getElementById("character");
-var block = document.getElementById("block");
-var randomPosition;
+var leftPaddle = document.getElementById("leftPaddle");
+var ball = document.getElementById("ball");
+var ballAngle = 0;
+var ballPosition = {xPosition: 947, yPosition: 470};
 
 document.addEventListener('mousemove', function(e)
 {
-    let left = e.offsetX;
-    if (left < 480)
-        character.style.left = left + 'px';
+    let up = e.offsetY - 125;
+    if(up > 0 && up < 717)
+        leftPaddle.style.top = up + 'px';
 })
 
 window.setInterval(function()
 {
-    var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    console.log(blockLeft);
+    var ballLeft = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
     if (blockLeft < randomPosition + 10 && blockLeft > randomPosition - 10)
     {
         block.style.backgroundColor = "green";
