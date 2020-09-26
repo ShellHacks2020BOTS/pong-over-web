@@ -7,7 +7,9 @@
   <body>
     <div id="titlecard">
       <div id="title">Pong Over Wire</div>
-      <button class="button button1">Play Now!</div>
+      <button class="button button1">Multiplayer VS</button>
+      <button class="button button2">Multiplayer Rally</button>
+      <button class="button button3">Singleplayer Rally</button>
     </div>
     
     <div id="leaderboard">
@@ -15,12 +17,12 @@
 
       <table class=leaderboard-table>
         <tr>
-          <div id="leaderboardtext">Singleplayer Wall</div>
+          <div class="leaderboardsubtext">Singleplayer Wall</div>
         </tr>
         <tr>
           <th>#</th>
           <th>Player</th>
-          <th>Score</th>
+          <th>Rallies</th>
         </tr>
       </table>
     </div>
@@ -51,7 +53,8 @@
       var table = document.querySelector(".leaderboard-table");
 
       var index = 1;
-      db.collection("leaderboard/MFDGbq39Epr7i13mY7sp/singlerally").get()
+      db.collection("leaderboard/MFDGbq39Epr7i13mY7sp/singlerally")
+      .orderBy("score", "desc").get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(`${doc.data().name}: ${doc.data().score}`);
