@@ -6,31 +6,62 @@
   </head>
   <body>
     <div id="titlecard">
-      <div id="title">pong over wire</div>
-      <button id="playbutton">Play Now!</div>
+      <div id="title">Pong Over Wire</div>
+      <button class="button button1">Play Now!</div>
     </div>
+    
     <div id="leaderboard">
-      <h1 style="text-align: center">LEADERBOARDS</h1>
+      <div id="leaderboardtext">LEADERBOARD</div>
 
       <table class=leaderboard-table>
         <tr>
-          <h3 style="text-align: center">Singleplayer Wall</h3>
+          <div id="leaderboardtext">Singleplayer Wall</div>
         </tr>
         <tr>
           <th>#</th>
-          <th>Players</th>
+          <th>Player</th>
           <th>Rallies</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>muskit, jdr</td>
-          <td>118</td>
-        </tr>
-        <tr>
-          <td></td>
         </tr>
       </table>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAZRyF5MR7unguS_QXQcYJcriNDGVk5M0M",
+        authDomain: "pow-server.firebaseapp.com",
+        databaseURL: "https://pow-server.firebaseio.com",
+        projectId: "pow-server",
+        storageBucket: "pow-server.appspot.com",
+        messagingSenderId: "893663120987",
+        appId: "1:893663120987:web:fcf4c51bbc21cce279397e"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var db = firebase.firestore()
+
+      var table = document.querySelector(".leaderboard-table");
+
+      var index = 1;
+      db.collection("leaderboard/MFDGbq39Epr7i13mY7sp/singlerally").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.data().name}: ${doc.data().score}`);
+          var row = table.insertRow();
+          row.insertCell(0).innerHTML = index++;
+          row.insertCell(1).innerHTML = doc.data().name;
+          row.insertCell(2).innerHTML = doc.data().score;
+        });
+      });
+    </script>
     <script src="./script.js"></script>
   </body>
 </html>

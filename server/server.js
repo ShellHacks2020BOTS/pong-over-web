@@ -4,7 +4,7 @@ const socketio = require('socket.io');
 
 const app = express();
 
-app.use(express.static(`${__dirname}/../client/Template`));
+app.use(express.static(`${__dirname}/../client/game`));
 
 const server = http.createServer(app);
 const io = socketio(server);

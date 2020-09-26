@@ -5,6 +5,7 @@
     <title>Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="message"></div>
     <div class="controls-wrapper">
@@ -17,13 +18,12 @@
             </form>
           </div>
         </div>
-      </div>
-    <div id="leftPaddle"></div>
-    <div id="rightPaddle"></div>
-    <div id="game">
-        <div id="ball"></div>
     </div>
+    <canvas id="myCanvas" width="1918" height="967"></canvas>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+    <script src="ball.js"></script>
+    <script src="paddle.js"></script>
+    <script src="score.js"></script>
 </body>
-<script src="/socket.io/socket.io.js"></script>
-<script src="script.js"></script>
 </html>
