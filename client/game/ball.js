@@ -5,7 +5,7 @@ ctx.fillRect(0,0,1920,1080);
 
 let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
 let ballPosition = {x: canvas.width / 2, y: canvas.height / 2};
-let ballSpeed = {dx: 8, dy: -8};
+let ballSpeed = {dx: 8, dy: -Math.floor(Math.random() * 8) + 2};
 let ballRadius = 10;
 
 function drawBall()
@@ -22,15 +22,24 @@ function draw()
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
+    drawScore();
 
     //Collision
-    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius/* || ballPosition.x + ballSpeed.dx < ballRadius*/) {
+    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius)
+    {
+        score++;
         ballSpeed.dx = -ballSpeed.dx;
     }
     else if (ballPosition.x + ballSpeed.dx < ballRadius + paddleCoordinates.x)
     {
         if (ballPosition.y > paddleCoordinates.y && ballPosition.y < paddleDimensions.height + paddleCoordinates.y)
+        {
             ballSpeed.dx = -ballSpeed.dx;
+            if (Math.random() > 0.5)
+                ballSpeed.dy = Math.floor(Math.random() * 8) + 2
+            else
+                ballSpeed.dy = -Math.floor(Math.random() * 8) + 2
+        }
         else
         {
             alert("GAME OVER");
@@ -42,6 +51,7 @@ function draw()
     if(ballPosition.y + ballSpeed.dy > canvas.height - ballRadius || ballPosition.y + ballSpeed.dy < ballRadius) {
         ballSpeed.dy = -ballSpeed.dy;
     }
+    //----------------------------
 
     ballPosition.x += ballSpeed.dx;
     ballPosition.y += ballSpeed.dy;
