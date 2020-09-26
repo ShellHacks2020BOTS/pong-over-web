@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: rgb(93, 99, 133);
   color: white;
   align-items: center;
   justify-content: center;
@@ -21,6 +21,15 @@ body {
   color: white;
 }
 
+#leaderboardtext
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Courier, monospace;
+  font-size: 40px;
+  color: white;
+}
+
 #leaderboard
 {
   display: flex;
@@ -29,6 +38,7 @@ body {
   align-items: center;
   margin: auto;
   width: 100%;
+  font-family: Arial, sans-serif;
 }
 
 .leaderboard-table
@@ -38,4 +48,28 @@ body {
   width: 600px;
   margin: auto;
   border: 1px solid white;
+}
+
+.button {
+  color: white;
+  padding: 32px 64px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 32px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: Courier, monospace;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #9e62ad;
+}
+
+.button1:hover {
+  background-color:#9e62ad;
+  color: white;
 }

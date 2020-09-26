@@ -1,6 +1,6 @@
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-ctx.fillStyle = "#000000";
+ctx.fillStyle = "#5d6385";
 ctx.fillRect(0,0,1920,1080);
 
 let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
@@ -14,7 +14,7 @@ function drawBall()
 {
     ctx.beginPath();
     ctx.arc(ballPosition.x, ballPosition.y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#040405";
     ctx.fill();
     ctx.closePath();
 }

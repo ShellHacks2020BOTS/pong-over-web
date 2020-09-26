@@ -6,7 +6,7 @@ function drawLeftPaddle()
 {
     ctx.beginPath();
     ctx.rect(leftPaddleCoordinates.x, leftPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#ffd480";
     ctx.fill();
     ctx.closePath();
 }
@@ -15,7 +15,7 @@ function drawRightPaddle()
 {
     ctx.beginPath();
     ctx.rect(rightPaddleCoordinates.x, rightPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#ff6666";
     ctx.fill();
     ctx.closePath();
 }

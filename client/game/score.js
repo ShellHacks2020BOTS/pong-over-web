@@ -4,14 +4,14 @@ let rightScore = 0;
 function drawLeftScore()
 {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle =  "#f3faff";
     ctx.fillText("Score: " + leftScore, canvas.width / 2 - 200, 20);
 }
 
 function drawRightScore()
 {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle =  "#f3faff";
     ctx.fillText("Score: " + rightScore, canvas.width / 2 + 150, 20);
 }
 

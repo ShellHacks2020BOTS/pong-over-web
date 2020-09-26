@@ -1,4 +1,4 @@
-let playButton = document.querySelector("#playbutton");
+let playButton = document.querySelector(".button");
 
 function play() {
   location.href = "../game/index.html";
