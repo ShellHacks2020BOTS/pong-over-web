@@ -19,22 +19,14 @@ function drawBall()
     ctx.closePath();
 }
 
-function drawInitialBall()
-{
-    ctx.beginPath();
-    ctx.arc(ballInitialPosition.x, ballInitialPosition.y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#ffffff";
-    ctx.fill();
-    ctx.closePath();
-}
-
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawLeftPaddle();
     drawRightPaddle();
-    drawScore();
+    drawLeftScore();
+    drawRightScore();
 
     //Collision
     if(ballPosition.x + ballSpeed.dx > ballRadius + rightPaddleCoordinates.x) // Right paddle zone
@@ -42,26 +34,16 @@ function draw()
         if (ballPosition.y > rightPaddleCoordinates.y && ballPosition.y < paddleDimensions.height + rightPaddleCoordinates.y)
             ballHit();
         else
-        {
-            onScore(false);
-            // alert("GAME OVER");
-            // document.location.reload();
-            // clearInterval(interval);
-        }
+            onScore(true);
     }
     else if (ballPosition.x + ballSpeed.dx < ballRadius + leftPaddleCoordinates.x) // Left paddle zone
     {
         // did ball hit paddle?
         if (ballPosition.y > leftPaddleCoordinates.y && ballPosition.y < paddleDimensions.height + leftPaddleCoordinates.y)
-            ballHit(true)
+            ballHit()
         // ball didn't hit paddle :(
         else
-        {
-            onScore();
-            // alert("GAME OVER");
-            // document.location.reload();
-            // clearInterval(interval);
-        }
+            onScore(false);
     }
 
     // bounce off ceiling/floor?
@@ -71,14 +53,6 @@ function draw()
 
     ballPosition.x += ballSpeed.dx;
     ballPosition.y += ballSpeed.dy;
-}
-
-function onScore(ifLeft)
-{
-    ballPosition.x = ballInitialPosition.x;
-    ballPosition.y = ballInitialPosition.y;
-    //ifLeft, increment left score, vice versa
-    score++;
 }
 
 // Reverse x speed and randomize the y speed
