@@ -2,9 +2,6 @@ let paddleDimensions = {width: 25, height: 200};
 let leftPaddleCoordinates = {x: 50, y: canvas.height / 2};
 let rightPaddleCoordinates = {x: canvas.width - 50, y: canvas.height / 2};
 
-let leftPaddleInitialCoordinates = {x: 50, y: canvas.height / 2};
-let rightPaddleInitialCoordinates = {x: canvas.width - 50, y: canvas.height / 2};
-
 function drawLeftPaddle()
 {
     ctx.beginPath();
@@ -18,24 +15,6 @@ function drawRightPaddle()
 {
     ctx.beginPath();
     ctx.rect(rightPaddleCoordinates.x, rightPaddleCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ffffff";
-    ctx.fill();
-    ctx.closePath();
-}
-
-function drawInitialLeftPaddle()
-{
-    ctx.beginPath();
-    ctx.rect(leftPaddleInitialCoordinates.x, leftPaddleInitialCoordinates.y, paddleDimensions.width, paddleDimensions.height);
-    ctx.fillStyle = "#ffffff";
-    ctx.fill();
-    ctx.closePath();
-}
-
-function drawInitialRightPaddle()
-{
-    ctx.beginPath();
-    ctx.rect(rightPaddleInitialCoordinates.x, rightPaddleInitialCoordinates.y, paddleDimensions.width, paddleDimensions.height);
     ctx.fillStyle = "#ffffff";
     ctx.fill();
     ctx.closePath();
