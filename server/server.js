@@ -2,6 +2,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const createGame = require('./create-game');
+const { SSL_OP_NETSCAPE_CA_DN_BUG } = require('constants');
 
 const app = express();
 
@@ -15,9 +16,18 @@ io.on('connection', (sock) => {
   // upon joining, get game state
   sock.emit('joined', getGame());
 
-  sock.on("update", (playerLeft, playerRight, ball) => {
-    update(playerLeft, playerRight, ball);
-    io.emit("update", { playerLeft, playerRight, ball })
+  sock.on("message", (text) => {
+    io.emit("message", text)
+  });
+
+  sock.on("moveBall", (x, y) => {
+    // update(leftPaddle, rightPaddle, ball);
+    io.emit("update", x, y);
+  });
+
+  sock.on("moveLeftPaddle", (x, y) => {
+    // update(leftPaddle, rightPaddle, ball);
+    io.emit("updatePaddle", x, y);
   });
 });
 

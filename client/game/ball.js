@@ -18,6 +18,10 @@ class Ball {
         ctx.fill();
         ctx.closePath();
     }
+
+    getPosition() {
+        return [this.positionX, this.positionY];
+    }
 }
 
 let ball = new Ball(
@@ -51,7 +55,7 @@ function draw()
     {
         // did ball hit paddle?
         if (ball.positionY > leftPaddle.positionY && ball.positionY < leftPaddle.height + leftPaddle.positionY)
-            ballHit()
+            ballHit();
         // ball didn't hit paddle :(
         else
             onScore(false);
@@ -65,16 +69,24 @@ function draw()
     ball.positionX += ball.speedX;
     ball.positionY += ball.speedY;
 
-    sock.emit("update", getGameStatus);
+    // sock.emit("message", "works");
+    let x = ball.getPosition()[0];
+    let y = ball.getPosition()[1];
+    sock.emit("moveBall", x, y);
+    x = leftPaddle.getPosition()[0];
+    y = leftPaddle.getPosition()[1];
+    sock.emit("moveLeftPaddle", x, y);
+    // sock.emit("moveRightPaddle", rightPaddle.getPosition);
 }
 
 // Reverse x speed and randomize the y speed
 function ballHit()
 {
     ball.speedX *= -1;
-    ball.speedY = Math.floor(Math.random() * 8) + 2
+    ball.speedY = Math.floor(Math.random() * 8) + 2;
     if (Math.random() > 0.5)
-        ball.speedY *= -1
+        ball.speedY *= -1;
+    sock.emit("message", "works");
 }
 
 let interval = setInterval(draw, 10);

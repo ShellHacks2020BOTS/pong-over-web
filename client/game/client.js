@@ -3,9 +3,9 @@ let ctx = canvas.getContext("2d");
 
 const getGameStatus = () => {
   return {
-    leftPaddleCoordinates,
-    rightPaddleCoordinates,
-    ballPosition,
+    leftPaddle,
+    rightPaddle,
+    ball,
   }
 }
 
@@ -14,13 +14,19 @@ const getGameStatus = () => {
 
 
 (() => {
-    sock.on("update", ({ playerLeft, playerRight, ball }) => {
-      leftPaddleCoordinates = playerLeft;
-      rightPaddleCoordinates = playerRight;
-      ballPosition = ball;
+  // update client with server information
+  sock.on('message', (text) => {
+      console.log(text);
+  });
+
+
+    sock.on("update", (x, y) => {
+      ball.positionX = x;
+      ball.positionY = y;
     });
 
-    document
-    .querySelector('#chat-form')
-    .addEventListener('submit', onChatSubmitted(sock));
+    sock.on("updatePaddle", (x, y) => {
+      leftPaddle.positionX = x;
+      leftPaddle.positionY = y;
+    });
 })();

@@ -13,6 +13,10 @@ class Paddle {
         ctx.fill();
         ctx.closePath();
     }
+
+    getPosition() {
+        return [this.positionX, this.positionY];
+    }
 }
 
 let leftPaddle = new Paddle(25, 200, 50, canvas.height / 2);
