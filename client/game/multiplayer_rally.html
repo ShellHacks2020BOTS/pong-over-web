@@ -7,7 +7,21 @@
 </head>
 
 <body>
+    <div id="message"></div>
+    <div class="controls-wrapper">
+        <ul id="events"></ul>
+        <div class="controls">
+          <div class="chat-wrapper">
+            <form id="chat-form">
+              <input id="chat" autocomplete="off" title="chat"/>
+              <button id="say">Say</button>
+            </form>
+          </div>
+        </div>
+    </div>
     <canvas id="myCanvas" width="1918" height="967"></canvas>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
     <script src="ball.js"></script>
     <script src="paddle.js"></script>
     <script src="score.js"></script>
