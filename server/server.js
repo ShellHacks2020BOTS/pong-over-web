@@ -20,6 +20,10 @@ io.on('connection', (sock) => {
     io.emit("message", text)
   });
 
+  sock.on("speed", (speedX, speedY) => {
+    io.emit("updateSpeed", speedX, speedY);
+  });
+
   sock.on("moveBall", (x, y) => {
     // update(leftPaddle, rightPaddle, ball);
     io.emit("update", x, y);

@@ -19,6 +19,11 @@ const getGameStatus = () => {
       console.log(text);
   });
 
+  sock.on("updateSpeed", (x, y) => {
+    ball.speedX = x;
+    ball.speedY = y;
+  });
+
 
     sock.on("update", (x, y) => {
       ball.positionX = x;

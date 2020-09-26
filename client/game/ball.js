@@ -70,11 +70,11 @@ function draw()
     ball.positionY += ball.speedY;
 
     // sock.emit("message", "works");
-    let x = ball.getPosition()[0];
-    let y = ball.getPosition()[1];
-    sock.emit("moveBall", x, y);
-    x = leftPaddle.getPosition()[0];
-    y = leftPaddle.getPosition()[1];
+    // let x = ball.getPosition()[0];
+    // let y = ball.getPosition()[1];
+    // sock.emit("moveBall", x, y);
+    let x = leftPaddle.getPosition()[0];
+    let y = leftPaddle.getPosition()[1];
     sock.emit("moveLeftPaddle", x, y);
     // sock.emit("moveRightPaddle", rightPaddle.getPosition);
 }
@@ -86,7 +86,10 @@ function ballHit()
     ball.speedY = Math.floor(Math.random() * 8) + 2;
     if (Math.random() > 0.5)
         ball.speedY *= -1;
-    sock.emit("message", "works");
+    sock.emit("speed", ball.speedX, ball.speedY);
+    let x = ball.getPosition()[0];
+    let y = ball.getPosition()[1];
+    sock.emit("moveBall", x, y);
 }
 
 let interval = setInterval(draw, 10);
