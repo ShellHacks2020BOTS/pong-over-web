@@ -5,7 +5,7 @@ ctx.fillRect(0,0,1920,1080);
 
 let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
 let ballPosition = {x: canvas.width / 2, y: canvas.height / 2};
-let ballSpeed = {dx: 3, dy: -3};
+let ballSpeed = {dx: 8, dy: -8};
 let ballRadius = 10;
 
 function drawBall()
@@ -47,4 +47,4 @@ function draw()
     ballPosition.y += ballSpeed.dy;
 }
 
-let interval = setInterval(draw, 1);
+let interval = setInterval(draw, 10);
