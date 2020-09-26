@@ -1,5 +1,5 @@
 // establish connection to server through socket.io
-const sock = io();
+const sock = io("http://localhost:8080");
 
 console.log("script works");
 
