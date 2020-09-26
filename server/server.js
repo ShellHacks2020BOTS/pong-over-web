@@ -7,6 +7,11 @@ const app = express();
 app.use(express.static(`${__dirname}/../client`));
 
 const server = http.createServer(app);
+const io = socketio(server);
+
+io.on('connection', (sock) => {
+  console.log("someone connected");
+});
 
 server.on("error", (err) => {
   console.log(err);
