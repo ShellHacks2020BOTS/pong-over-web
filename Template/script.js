@@ -42,6 +42,7 @@ function component(width, height, color, x, y) {
       this.x += this.speed * Math.sin(this.angle);
       this.y -= this.speed * Math.cos(this.angle);
     }
+}
 
 // var checkDead = setInterval(function()
 // {
