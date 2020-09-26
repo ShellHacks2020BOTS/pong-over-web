@@ -23,21 +23,19 @@ body {
 
 #leaderboard
 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: auto;
-  width: 60%;
-  text-align: center;
+  width: 100%;
 }
 
 .leaderboard-table
 {
-
+  text-align: center;
   color: white;
-  width: 50%;
+  width: 600px;
   margin: auto;
   border: 1px solid white;
 }
-
-#playbutton {
-
-}
-
