@@ -1,34 +1,50 @@
-var leftPaddle = document.getElementById("leftPaddle");
-var ball = document.getElementById("ball");
-var ballAngle = 0;
-var ballPosition = {xPosition: 947, yPosition: 470};
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+ctx.fillStyle = "#000000";
+ctx.fillRect(0,0,1920,1080);
 
-document.getElementById("game").addEventListener('mousemove', function(e)
+let ballAngle = Math.floor(Math.random() * 91) + 45 //ballAngle starts between 45 and 135
+let ballPosition = {x: canvas.width / 2, y: canvas.height / 2};
+let ballSpeed = {dx: 3, dy: -3};
+let ballRadius = 10;
+
+function drawBall()
 {
-    let up = e.offsetY - 125;
-    console.log(e.offsetY)
-    if(up > 0 && up < 719)
-        leftPaddle.style.top = up + 'px';
-    else if (up < 0)
-    {
-        console.log("wah")
-        leftPaddle.style.top = 0 + 'px'
-    }
-    else
-    {
-        leftPaddle.style.top = 719 + 'px'
-    }
-})
+    ctx.beginPath();
+    ctx.arc(ballPosition.x, ballPosition.y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.closePath();
+}
 
+function draw()
+{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    drawPaddle();
 
-// var checkDead = setInterval(function()
-// {
-//     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-//     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-//     if(blockLeft < 20 && blockLeft > 0 && characterTop >= 130)
-//     {
-//         block.style.animation = "none";
-//         block.style.display = "none";
-//         alert("You lose");
-//     }
-// }, 10);
+    //Collision
+    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius/* || ballPosition.x + ballSpeed.dx < ballRadius*/) {
+        ballSpeed.dx = -ballSpeed.dx;
+    }
+    else if (ballPosition.x + ballSpeed.dx < ballRadius + paddleCoordinates.x)
+    {
+        if (ballPosition.y > paddleCoordinates.y && ballPosition.y < paddleDimensions.height + paddleCoordinates.y)
+            ballSpeed.dx = -ballSpeed.dx;
+        else
+        {
+            alert("GAME OVER");
+            document.location.reload();
+            clearInterval(interval);
+        }
+    }
+    
+    if(ballPosition.y + ballSpeed.dy > canvas.height - ballRadius || ballPosition.y + ballSpeed.dy < ballRadius) {
+        ballSpeed.dy = -ballSpeed.dy;
+    }
+
+    ballPosition.x += ballSpeed.dx;
+    ballPosition.y += ballSpeed.dy;
+}
+
+let interval = setInterval(draw, 1);
