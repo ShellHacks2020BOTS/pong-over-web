@@ -25,21 +25,22 @@ function draw()
     drawScore();
 
     //Collision
-    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius)
+    if(ballPosition.x + ballSpeed.dx > canvas.width - ballRadius) // wall hit
     {
         score++;
         ballSpeed.dx = -ballSpeed.dx;
     }
-    else if (ballPosition.x + ballSpeed.dx < ballRadius + paddleCoordinates.x)
+    else if (ballPosition.x + ballSpeed.dx < ballRadius + paddleCoordinates.x) // ball in paddle-zone
     {
+        // did ball hit paddle?
         if (ballPosition.y > paddleCoordinates.y && ballPosition.y < paddleDimensions.height + paddleCoordinates.y)
         {
             ballSpeed.dx = -ballSpeed.dx;
+            ballSpeed.dy = Math.floor(Math.random() * 8) + 2
             if (Math.random() > 0.5)
-                ballSpeed.dy = Math.floor(Math.random() * 8) + 2
-            else
-                ballSpeed.dy = -Math.floor(Math.random() * 8) + 2
+                ballSpeed.dy *= -1
         }
+        // ball didn't hit paddle :(
         else
         {
             alert("GAME OVER");
@@ -47,7 +48,7 @@ function draw()
             clearInterval(interval);
         }
     }
-    
+    // bounce off ceiling/floor?
     if(ballPosition.y + ballSpeed.dy > canvas.height - ballRadius || ballPosition.y + ballSpeed.dy < ballRadius) {
         ballSpeed.dy = -ballSpeed.dy;
     }
