@@ -1,3 +1,8 @@
+// establish connection to server through socket.io
+const sock = io();
+
+console.log("script works");
+
 var leftPaddle = document.getElementById("leftPaddle");
 var ball = document.getElementById("ball");
 var ballAngle = 0;
