@@ -29,10 +29,10 @@ function onScore(ifLeftScored)
 
 function onPointLimit()
 {
-    if (leftScore >= 10)
-        resetGame("Left")
-    if (rightScore >= 10)
-        resetGame("Right");
+    // if (leftScore >= 10)
+    //     resetGame("Left")
+    // if (rightScore >= 10)
+    //     resetGame("Right");
 }
 
 function resetGame(winnerString)

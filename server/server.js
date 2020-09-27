@@ -3,6 +3,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const createGame = require('./create-game');
 const { SSL_OP_NETSCAPE_CA_DN_BUG } = require('constants');
+const { Console } = require('console');
 
 const app = express();
 
@@ -48,8 +49,8 @@ server.listen(8080, () => {
 
 var connectCounter = 0;
 io.on('connect', function (sock) {
-  console.log(++connectCounter);
-
+  sock.emit("player", ++connectCounter);
+  console.log(connectCounter);
   sock.on('disconnect', function () {
     console.log(--connectCounter);
   });

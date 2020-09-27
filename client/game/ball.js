@@ -34,6 +34,13 @@ let ball = new Ball(
 
 let ballInitialPosition = {x: canvas.width / 2, y: canvas.height / 2};
 
+function drawPlayerNum()
+{
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "#f3faff";
+    ctx.fillText("Player " + playerNum, canvas.width / 2 + 150, 100);
+}
+
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -42,6 +49,7 @@ function draw()
     rightPaddle.drawPaddle();
     drawLeftScore();
     drawRightScore();
+    drawPlayerNum();
 
     //Collision
     if(ball.positionX + ball.speedX > ball.radius + rightPaddle.positionX) // Right paddle zone
@@ -69,14 +77,12 @@ function draw()
     ball.positionX += ball.speedX;
     ball.positionY += ball.speedY;
 
-    // sock.emit("message", "works");
-    // let x = ball.getPosition()[0];
-    // let y = ball.getPosition()[1];
-    // sock.emit("moveBall", x, y);
-    let x = leftPaddle.getPosition()[0];
-    let y = leftPaddle.getPosition()[1];
-    sock.emit("moveLeftPaddle", x, y);
-    // sock.emit("moveRightPaddle", rightPaddle.getPosition);
+    let x = curPaddle.getPosition()[0];
+    let y = curPaddle.getPosition()[1];
+    if(playerNum == 1)
+        sock.emit("moveLeftPaddle", x, y);
+    else
+        sock.emit("moveRightPaddle", x, y);
 }
 
 // Reverse x speed and randomize the y speed

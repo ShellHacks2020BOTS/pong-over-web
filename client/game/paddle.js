@@ -22,16 +22,18 @@ class Paddle {
 let leftPaddle = new Paddle(25, 200, 50, canvas.height / 2);
 let rightPaddle = new Paddle(25, 200, canvas.width - 50, canvas.height / 2);
 
+var curPaddle;
+
 // Paddle tracks to user mouse
 document.addEventListener('mousemove', function(e)
 {
     let up = e.offsetY - 100;
     if(up > 0 && up < 767)
-        leftPaddle.positionY = up;
+        curPaddle.positionY = up;
     else if (up < 0)
-        leftPaddle.positionY= 0;
+        curPaddle.positionY= 0;
     else
-        leftPaddle.positionY = 767;
+        curPaddle.positionY = 767;
 })
 
 // TODO: Movement for player 2
