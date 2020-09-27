@@ -30,8 +30,13 @@ const getGameStatus = () => {
       ball.positionY = y;
     });
 
-    sock.on("updatePaddle", (x, y) => {
+    sock.on("updateLeftPaddle", (x, y) => {
       leftPaddle.positionX = x;
       leftPaddle.positionY = y;
+    });
+
+    sock.on("updateRightPaddle", (x, y) => {
+      rightPaddle.positionX = x;
+      rightPaddle.positionY = y;
     });
 })();
