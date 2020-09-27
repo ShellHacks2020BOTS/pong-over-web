@@ -40,5 +40,5 @@ server.on("error", (err) => {
 });
 
 server.listen(8080, () => {
-  console.log('server is ready');
+  console.log('server is ready on 8080');
 });
