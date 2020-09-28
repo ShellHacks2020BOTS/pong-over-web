@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    touch-action: none;
 }
 
 canvas { background: #5d6385; display: block; margin: 0 auto; }

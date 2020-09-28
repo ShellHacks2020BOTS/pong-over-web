@@ -24,8 +24,7 @@ let rightPaddle = new Paddle(25, 200, canvas.width - 50, canvas.height / 2);
 
 var curPaddle;
 
-// Paddle tracks to user mouse
-document.addEventListener('mousemove', function(e)
+function setMyPaddlePos(e)
 {
     let up = e.offsetY - 100;
     if(up > 0 && up < 767)
@@ -34,6 +33,19 @@ document.addEventListener('mousemove', function(e)
         curPaddle.positionY= 0;
     else
         curPaddle.positionY = 767;
-})
 
+    console.log(e.positionX, ", ", e.positionY);
+}
+
+// Paddle tracks to user mouse
+document.addEventListener('mousemove', function(e)
+{
+    setMyPaddlePos(e);
+})
+document.addEventListener('touchmove', function(e)
+{
+    e.offsetY = e.touches[0].pageY;
+    // console.log(e.positionX, ", ", e.positionY);
+    setMyPaddlePos(e);
+}, false)
 // TODO: Movement for player 2
